@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Events | Parallel Party Bar — Ashburn, VA</title>
+  <meta name="description" content="Host your private event at Parallel Party Bar in Ashburn, VA. Bridal showers, corporate events, weddings, and more for 10–140 guests. Sister venue to Northern Virginia's Best Wine Bar, 5 years running.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Reset & Root ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #131313;
+      --bg-mid:      #1c1c1c;
+      --bg-card:     #212121;
+      --bg-light:    #2a2a2a;
+      --border:      #333333;
+      --border-glow: rgba(201,168,76,0.35);
+      --cream:       #f5f0e8;
+      --cream-dim:   #c8c3bc;
+      --cream-muted: #8a8580;
+      --gold:        #c9a84c;
+      --gold-lt:     #dfc07a;
+      --gold-dim:    rgba(201,168,76,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ─── Scroll Animations ────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s cubic-bezier(.22,1,.36,1), transform 0.85s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+    .reveal-d5 { transition-delay: 0.40s; }
+    .reveal-d6 { transition-delay: 0.48s; }
+
+    /* ─── Typography helpers ───────────────────────────────────── */
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .gold-rule {
+      width: 48px;
+      height: 1.5px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      margin-bottom: 36px;
+    }
+    .gold-rule.center { margin-left: auto; margin-right: auto; background: var(--gold); }
+
+    /* ─── Layout ───────────────────────────────────────────────── */
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+    section { padding: 110px 0; }
+
+    /* ─── Buttons ──────────────────────────────────────────────── */
+    .btn-gold {
+      display: inline-block;
+      background: var(--gold);
+      color: #111;
+      padding: 16px 38px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .btn-gold:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(201,168,76,0.28);
+    }
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      color: var(--cream);
+      padding: 15px 38px;
+      border: 1px solid rgba(245,240,232,0.32);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.22s, color 0.22s, background 0.22s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .btn-outline-gold {
+      display: block;
+      text-align: center;
+      width: 100%;
+      background: transparent;
+      color: var(--gold);
+      padding: 13px 20px;
+      border: 1px solid var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.22s, color 0.22s;
+      text-decoration: none;
+    }
+    .btn-outline-gold:hover { background: var(--gold); color: #111; }
+
+    /* ══════════════════════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════════════════════ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      padding: 22px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: padding 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+    #nav.scrolled {
+      background: rgba(19,19,19,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 14px 40px;
+      border-bottom-color: rgba(201,168,76,0.12);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-logo em { color: var(--gold); font-style: normal; }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 36px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--cream-dim);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .nav-cta a {
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 8px 18px;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links .nav-cta a:hover { background: var(--gold); color: #111; }
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--cream);
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(13,13,13,0.98);
+      z-index: 998;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--cream);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-close {
+      position: absolute;
+      top: 24px; right: 28px;
+      background: none; border: none;
+      color: var(--cream-muted);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 0;
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1920&q=80&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center 40%;
+      will-change: transform;
+    }
+    /* Ken Burns subtle zoom */
+    @keyframes kenburns {
+      from { transform: scale(1.07); }
+      to   { transform: scale(1); }
+    }
+    .hero-img { animation: kenburns 12s ease-out forwards; }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(13,13,13,0.38) 0%,
+          rgba(13,13,13,0.62) 45%,
+          rgba(13,13,13,0.92) 85%,
+          rgba(13,13,13,1)    100%
+        );
+    }
+    /* Subtle noise texture overlay */
+    .hero-overlay::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 10;
+      max-width: 860px;
+      padding: 0 24px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.07);
+      padding: 9px 22px;
+      border-radius: 40px;
+      margin-bottom: 32px;
+      backdrop-filter: blur(4px);
+    }
+    .hero-h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.08;
+      margin-bottom: 22px;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+    }
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--gold);
+      display: block;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      color: var(--cream-dim);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin-bottom: 48px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: var(--cream-muted);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .scroll-bar {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, var(--gold) 0%, transparent 100%);
+      animation: pulse-line 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse-line {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.7); transform-origin: top; }
+      50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       VENUE OVERVIEW
+    ══════════════════════════════════════════════════════════ */
+    #venue { background: var(--bg-mid); }
+
+    .venue-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .venue-copy p {
+      color: var(--cream-dim);
+      margin-bottom: 18px;
+      font-size: 1.02rem;
+      line-height: 1.85;
+    }
+    .venue-copy strong { color: var(--cream); font-weight: 500; }
+
+    .venue-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .vstat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 28px 22px;
+      border-radius: 3px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .vstat:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+    }
+    .vstat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .vstat-lbl {
+      font-size: 0.72rem;
+      color: var(--cream-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       EVENTS WE HOST
+    ══════════════════════════════════════════════════════════ */
+    #events { background: var(--bg); }
+    #events .eyebrow, #events .section-title { text-align: center; }
+    #events .gold-rule { margin-left: auto; margin-right: auto; }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .etile {
+      background: var(--bg-mid);
+      border: 1px solid var(--border);
+      padding: 38px 28px;
+      border-radius: 3px;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s, background 0.3s;
+    }
+    .etile:hover {
+      border-color: var(--gold);
+      transform: translateY(-6px);
+      background: var(--bg-card);
+    }
+    .etile-icon {
+      font-size: 2.2rem;
+      display: block;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+    .etile h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--cream);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .etile p {
+      font-size: 0.84rem;
+      color: var(--cream-muted);
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       PACKAGES
+    ══════════════════════════════════════════════════════════ */
+    #packages { background: var(--bg-mid); }
+    #packages .eyebrow, #packages .section-title { text-align: center; }
+    #packages .gold-rule { margin-left: auto; margin-right: auto; margin-bottom: 60px; }
+
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 44px;
+    }
+    .pkg-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 44px 36px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .pkg-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .pkg-card:hover { border-color: var(--border-glow); transform: translateY(-5px); }
+    .pkg-card:hover::after { opacity: 1; }
+
+    .pkg-card.featured {
+      border-color: rgba(201,168,76,0.3);
+      background: #1a1915;
+    }
+    .pkg-card.featured::after { opacity: 1; }
+
+    .pkg-badge {
+      position: absolute;
+      top: 18px; right: 18px;
+      background: var(--gold);
+      color: #111;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .pkg-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--cream);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .pkg-type {
+      font-size: 0.68rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+    .pkg-features {
+      list-style: none;
+      flex: 1;
+      margin-bottom: 28px;
+    }
+    .pkg-features li {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.86rem;
+      color: var(--cream-dim);
+      line-height: 1.5;
+    }
+    .pkg-features li:last-child { border-bottom: none; }
+    .pkg-features li::before {
+      content: '—';
+      color: var(--gold);
+      font-size: 0.72rem;
+      flex-shrink: 0;
+    }
+    .pkg-perfect {
+      font-size: 0.76rem;
+      color: var(--gold);
+      font-style: italic;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .pkg-note {
+      text-align: center;
+      font-size: 0.84rem;
+      color: var(--cream-muted);
+      font-style: italic;
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.75;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       WHY PARALLEL
+    ══════════════════════════════════════════════════════════ */
+    #why { background: var(--bg); }
+    #why .eyebrow, #why .section-title { text-align: center; }
+    #why .gold-rule { margin-left: auto; margin-right: auto; margin-bottom: 56px; }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .why-card {
+      background: var(--bg-mid);
+      border: 1px solid var(--border);
+      padding: 40px 36px;
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .why-card:hover { border-color: var(--border-glow); }
+    .why-card::before {
+      content: '\201C';
+      position: absolute;
+      top: -18px; left: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 9rem;
+      color: var(--gold);
+      opacity: 0.06;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .why-card p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--cream);
+      font-style: italic;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       INQUIRY FORM
+    ══════════════════════════════════════════════════════════ */
+    #inquiry { background: var(--bg-mid); }
+    #inquiry .eyebrow, #inquiry .section-title { text-align: center; }
+    #inquiry .gold-rule { margin-left: auto; margin-right: auto; }
+    .inquiry-sub {
+      text-align: center;
+      color: var(--cream-muted);
+      font-size: 0.95rem;
+      max-width: 520px;
+      margin: 0 auto 56px;
+      line-height: 1.7;
+    }
+
+    .form-wrap { max-width: 800px; margin: 0 auto; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-group { margin-bottom: 22px; }
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      margin-bottom: 8px;
+    }
+    .form-group label .req { color: var(--gold); margin-left: 2px; }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--cream);
+      padding: 13px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.93rem;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 38px;
+      cursor: pointer;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.5) sepia(1) saturate(3) hue-rotate(10deg); cursor: pointer; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(138,133,128,0.6); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+    }
+    .form-group input.err,
+    .form-group select.err,
+    .form-group textarea.err {
+      border-color: #b94040;
+      box-shadow: 0 0 0 3px rgba(185,64,64,0.1);
+    }
+    .err-msg {
+      font-size: 0.72rem;
+      color: #c05050;
+      margin-top: 5px;
+      display: none;
+    }
+    .err-msg.show { display: block; }
+    .form-group textarea {
+      min-height: 116px;
+      resize: vertical;
+      line-height: 1.65;
+    }
+
+    .inline-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .radio-opt, .check-opt {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      cursor: pointer;
+    }
+    .radio-opt input[type="radio"],
+    .check-opt input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--gold);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Checkbox grid for packages */
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 24px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--gold);
+      color: #111;
+      padding: 18px 40px;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      margin-top: 10px;
+      transition: background 0.22s, transform 0.22s, box-shadow 0.22s;
+      position: relative;
+    }
+    .btn-submit:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(201,168,76,0.3);
+    }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .form-after {
+      text-align: center;
+      margin-top: 26px;
+      font-size: 0.83rem;
+      color: var(--cream-muted);
+      line-height: 1.75;
+    }
+    .form-after a { color: var(--gold); text-decoration: none; }
+    .form-after a:hover { text-decoration: underline; }
+
+    /* Success state */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 72px 32px;
+      background: var(--bg);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 3px;
+    }
+    .success-state.show { display: block; }
+    .success-icon { font-size: 3rem; margin-bottom: 20px; }
+    .success-state h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .success-state p { color: var(--cream-muted); font-size: 0.96rem; line-height: 1.7; }
+    .success-state a { color: var(--gold); text-decoration: none; }
+
+    /* ══════════════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════════════ */
+    footer {
+      background: #0d0d0d;
+      border-top: 1px solid rgba(201,168,76,0.12);
+      padding: 64px 40px 36px;
+    }
+    .footer-inner { max-width: 1180px; margin: 0 auto; }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 52px;
+      flex-wrap: wrap;
+      gap: 44px;
+    }
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .footer-brand-name em { color: var(--gold); font-style: normal; }
+    .footer-tagline {
+      font-size: 0.72rem;
+      color: var(--cream-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .social-row { display: flex; gap: 12px; }
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream-muted);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .social-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+    .social-btn svg { display: block; }
+
+    .footer-contact p {
+      font-size: 0.86rem;
+      color: var(--cream-muted);
+      margin-bottom: 7px;
+      line-height: 1.65;
+    }
+    .footer-contact a { color: var(--gold); text-decoration: none; }
+    .footer-contact a:hover { text-decoration: underline; }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.75rem; color: rgba(138,133,128,0.55); }
+    .footer-bottom a {
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .footer-bottom a:hover { text-decoration: underline; }
+
+    /* ══════════════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════════════ */
+    @media (max-width: 1000px) {
+      .venue-grid { grid-template-columns: 1fr; gap: 52px; }
+      .pkg-grid   { grid-template-columns: 1fr; max-width: 540px; margin-left: auto; margin-right: auto; }
+      .why-grid   { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px) {
+      section { padding: 80px 0; }
+      .container { padding: 0 20px; }
+      .events-grid { grid-template-columns: repeat(2,1fr); }
+      #nav { padding: 16px 20px; }
+      #nav.scrolled { padding: 12px 20px; }
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .venue-stats { grid-template-columns: 1fr 1fr; }
+      footer { padding: 48px 20px 28px; }
+      .footer-top { flex-direction: column; gap: 32px; }
+    }
+    @media (max-width: 500px) {
+      .events-grid { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      .check-grid { grid-template-columns: 1fr; }
+      .venue-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ MOBILE MENU ══════════════════════════════════════════ -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+    <a href="#venue"    onclick="closeMobile()">The Venue</a>
+    <a href="#packages" onclick="closeMobile()">Packages</a>
+    <a href="#why"      onclick="closeMobile()">Why Parallel</a>
+    <a href="#inquiry"  onclick="closeMobile()">Book Your Event</a>
+    <a href="tel:7038580077" style="color:var(--gold); font-family:'Inter',sans-serif; font-size:1rem; letter-spacing:.06em;">703.858.0077</a>
+  </div>
+
+  <!-- ══ NAV ════════════════════════════════════════════════════ -->
+  <nav id="nav" aria-label="Primary navigation">
+    <a href="#hero" class="nav-logo">Parallel <em>Party Bar</em></a>
+    <ul class="nav-links">
+      <li><a href="#venue">The Venue</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#why">Why Parallel</a></li>
+      <li class="nav-cta"><a href="#inquiry">Book Your Event</a></li>
+    </ul>
+    <button class="nav-burger" id="burgerBtn" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ══ HERO ═══════════════════════════════════════════════════ -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-img" role="img" aria-label="Upscale bar interior with warm ambient lighting"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-badge reveal">⭐ Best Wine Bar &mdash; Northern Virginia Magazine, 5 Years Running</div>
+      <h1 class="hero-h1 reveal reveal-d1">
+        Your Event.
+        <em>Perfectly Poured.</em>
+      </h1>
+      <p class="hero-sub reveal reveal-d2">Private events for 10&ndash;140 guests in the heart of Broadlands, Ashburn</p>
+      <div class="hero-btns reveal reveal-d3">
+        <a href="#inquiry" class="btn-gold">Request Your Date</a>
+        <a href="#packages" class="btn-ghost">View Packages</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <div class="scroll-bar"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ══ VENUE OVERVIEW ════════════════════════════════════════ -->
+  <section id="venue">
+    <div class="container">
+      <div class="venue-grid">
+        <div class="venue-copy">
+          <span class="eyebrow reveal">The Venue</span>
+          <h2 class="section-title reveal reveal-d1">Two Buildings.<br>One Unforgettable<br>Experience.</h2>
+          <div class="gold-rule reveal reveal-d2"></div>
+          <p class="reveal reveal-d2">Parallel Party Bar is unlike any venue in the greater Ashburn area. Anchored in Broadlands Center, our space features retractable garage-door facades that open seamlessly between our Party Bar and its award-winning sister venue, <strong>Parallel Wine &amp; Whiskey Bar</strong> — creating a rare indoor-outdoor flow that transforms with your event.</p>
+          <p class="reveal reveal-d3">Host an intimate cocktail hour indoors, then roll open the doors to the courtyard as the evening comes alive. With nearly 300 combined seats across both buildings when fully open, we scale effortlessly from a private 10-person executive lunch to a 140-guest wedding reception.</p>
+          <p class="reveal reveal-d4">And when your guests need a drink, they're in the best hands in Northern Virginia. Our sister bar has been voted Best Wine Bar five consecutive years — and that same standard of excellence carries through to every event we host.</p>
+        </div>
+        <div class="venue-stats">
+          <div class="vstat reveal reveal-d1">
+            <div class="vstat-num">140</div>
+            <div class="vstat-lbl">Max&nbsp;Guests</div>
+          </div>
+          <div class="vstat reveal reveal-d2">
+            <div class="vstat-num">2</div>
+            <div class="vstat-lbl">Connected Buildings</div>
+          </div>
+          <div class="vstat reveal reveal-d3">
+            <div class="vstat-num">300+</div>
+            <div class="vstat-lbl">Combined Seats</div>
+          </div>
+          <div class="vstat reveal reveal-d4">
+            <div class="vstat-num">5&times;</div>
+            <div class="vstat-lbl">Best Wine Bar&nbsp;&mdash;&nbsp;NOVA Mag</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EVENTS WE HOST ════════════════════════════════════════ -->
+  <section id="events">
+    <div class="container">
+      <span class="eyebrow reveal">What We Host</span>
+      <h2 class="section-title reveal reveal-d1">Every Occasion, Elevated</h2>
+      <div class="gold-rule center reveal reveal-d2"></div>
+      <div class="events-grid">
+        <div class="etile reveal reveal-d1">
+          <span class="etile-icon" aria-hidden="true">💍</span>
+          <h3>Bridal Showers &amp; Bachelorettes</h3>
+          <p>Celebrate the bride-to-be with custom cocktails, gorgeous tablescapes, and a space that photographs beautifully.</p>
+        </div>
+        <div class="etile reveal reveal-d2">
+          <span class="etile-icon" aria-hidden="true">🏢</span>
+          <h3>Corporate Events &amp; Lunches</h3>
+          <p>Team retreats, client dinners, product launches — we create the kind of experience that builds lasting relationships.</p>
+        </div>
+        <div class="etile reveal reveal-d3">
+          <span class="etile-icon" aria-hidden="true">🎂</span>
+          <h3>Birthday Celebrations</h3>
+          <p>From milestone 30ths to once-in-a-lifetime 50ths — your birthday, celebrated exactly the way you've always imagined.</p>
+        </div>
+        <div class="etile reveal reveal-d1">
+          <span class="etile-icon" aria-hidden="true">🎓</span>
+          <h3>Graduation Parties</h3>
+          <p>Mark the moment properly. Bring the family, celebrate the graduate, and let us handle every last detail.</p>
+        </div>
+        <div class="etile reveal reveal-d2">
+          <span class="etile-icon" aria-hidden="true">🥂</span>
+          <h3>Wedding Receptions &amp; Rehearsals</h3>
+          <p>Warm light, great wine, and a venue unlike anywhere else in Northern Virginia — the perfect backdrop for your vows.</p>
+        </div>
+        <div class="etile reveal reveal-d3">
+          <span class="etile-icon" aria-hidden="true">🏆</span>
+          <h3>Sports &amp; Team Celebrations</h3>
+          <p>Championship wins, fantasy crownings, team banquets — every victory deserves a venue that rises to the occasion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PACKAGES ══════════════════════════════════════════════ -->
+  <section id="packages">
+    <div class="container">
+      <span class="eyebrow reveal">Event Packages</span>
+      <h2 class="section-title reveal reveal-d1">Choose Your Experience</h2>
+      <div class="gold-rule center reveal reveal-d2"></div>
+      <div class="pkg-grid">
+
+        <!-- The Social -->
+        <div class="pkg-card reveal reveal-d1">
+          <h3 class="pkg-name">The Social</h3>
+          <p class="pkg-type">Beverage Focus</p>
+          <ul class="pkg-features">
+            <li>Minimum spend applies</li>
+            <li>Full bar service included</li>
+            <li>Beer, wine &amp; spirits selection</li>
+            <li>Up to 4 hours</li>
+            <li>Dedicated bar staff</li>
+            <li>Indoor or outdoor setup</li>
+          </ul>
+          <p class="pkg-perfect">Perfect for: cocktail parties, after-work events, informal celebrations</p>
+          <button class="btn-outline-gold" onclick="selectPackage('The Social')">Inquire About This Package</button>
+        </div>
+
+        <!-- The Celebration (featured) -->
+        <div class="pkg-card featured reveal reveal-d2">
+          <span class="pkg-badge">Most Popular</span>
+          <h3 class="pkg-name">The Celebration</h3>
+          <p class="pkg-type">The Full Package</p>
+          <ul class="pkg-features">
+            <li>Everything in The Social, plus:</li>
+            <li>Appetizer package included</li>
+            <li>Charcuterie &amp; cheese displays</li>
+            <li>Signature cocktail for the event</li>
+            <li>Custom menu card</li>
+            <li>Up to 5 hours</li>
+            <li>Dedicated event coordinator</li>
+          </ul>
+          <p class="pkg-perfect">Perfect for: birthdays, bridal showers, graduation parties</p>
+          <button class="btn-outline-gold" onclick="selectPackage('The Celebration')">Inquire About This Package</button>
+        </div>
+
+        <!-- The Full Experience -->
+        <div class="pkg-card reveal reveal-d3">
+          <h3 class="pkg-name">The Full Experience</h3>
+          <p class="pkg-type">Premium</p>
+          <ul class="pkg-features">
+            <li>Everything in The Celebration, plus:</li>
+            <li>Full dinner or brunch menu</li>
+            <li>Multi-course options available</li>
+            <li>Live music coordination available</li>
+            <li>Both buildings for large parties</li>
+            <li>Up to 6 hours + setup time</li>
+            <li>Personal event manager</li>
+          </ul>
+          <p class="pkg-perfect">Perfect for: weddings, corporate galas, large milestone events</p>
+          <button class="btn-outline-gold" onclick="selectPackage('The Full Experience')">Inquire About This Package</button>
+        </div>
+
+      </div>
+      <p class="pkg-note reveal">All packages include private or semi-private space, professional bar staff, and white-glove service. Pricing varies by date, guest count, and package selection. Contact us for a custom quote.</p>
+    </div>
+  </section>
+
+  <!-- ══ WHY PARALLEL ══════════════════════════════════════════ -->
+  <section id="why">
+    <div class="container">
+      <span class="eyebrow reveal">Why Parallel</span>
+      <h2 class="section-title reveal reveal-d1">A Venue Worth Talking About</h2>
+      <div class="gold-rule center reveal reveal-d2"></div>
+      <div class="why-grid">
+        <div class="why-card reveal reveal-d1">
+          <p>Named Best Wine Bar in Northern Virginia five consecutive years — and that same standard of excellence defines every private event we host.</p>
+        </div>
+        <div class="why-card reveal reveal-d2">
+          <p>80+ wines, 160+ spirits, and craft beers on tap. Your guests will never order the same drink twice — and they won't want to.</p>
+        </div>
+        <div class="why-card reveal reveal-d3">
+          <p>An outdoor courtyard with retractable garage-door facades — the only venue of its kind in Broadlands. Indoor warmth, outdoor energy. Your call.</p>
+        </div>
+        <div class="why-card reveal reveal-d4">
+          <p>From intimate 10-person executive lunches to 140-guest receptions spanning two buildings — we've done it all, and we've done it beautifully.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ INQUIRY FORM ══════════════════════════════════════════ -->
+  <section id="inquiry">
+    <div class="container">
+      <span class="eyebrow reveal">Get in Touch</span>
+      <h2 class="section-title reveal reveal-d1">Let&rsquo;s Plan Your Event</h2>
+      <div class="gold-rule center reveal reveal-d2"></div>
+      <p class="inquiry-sub reveal reveal-d3">Tell us about your vision and we&rsquo;ll take it from there. Every great event starts with a conversation.</p>
+
+      <div class="form-wrap">
+
+        <!-- Success state -->
+        <div class="success-state" id="successState">
+          <div class="success-icon">🥂</div>
+          <h3 id="successHeading">Thank you! We&rsquo;ll be in touch within 24 hours.</h3>
+          <p>Our events team will reach out shortly to discuss your vision.<br>In the meantime, feel free to call us at <a href="tel:7038580077">703.858.0077</a>.</p>
+        </div>
+
+        <form id="inquiryForm" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fName">First Name <span class="req">*</span></label>
+              <input type="text" id="fName" name="fName" placeholder="Jane" autocomplete="given-name">
+              <p class="err-msg" id="fName-err">Please enter your first name.</p>
+            </div>
+            <div class="form-group">
+              <label for="lName">Last Name <span class="req">*</span></label>
+              <input type="text" id="lName" name="lName" placeholder="Smith" autocomplete="family-name">
+              <p class="err-msg" id="lName-err">Please enter your last name.</p>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="jane@email.com" autocomplete="email">
+              <p class="err-msg" id="email-err">Please enter a valid email address.</p>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(703) 555-0100" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="evType">Event Type <span class="req">*</span></label>
+              <select id="evType" name="evType">
+                <option value="" disabled selected>Select event type</option>
+                <option>Bridal Shower</option>
+                <option>Bachelorette Party</option>
+                <option>Corporate Event</option>
+                <option>Birthday Party</option>
+                <option>Graduation Party</option>
+                <option>Wedding</option>
+                <option>Holiday Party</option>
+                <option>Sports Celebration</option>
+                <option>Other</option>
+              </select>
+              <p class="err-msg" id="evType-err">Please select an event type.</p>
+            </div>
+            <div class="form-group">
+              <label for="evDate">Event Date <span class="req">*</span></label>
+              <input type="date" id="evDate" name="evDate">
+              <p class="err-msg" id="evDate-err">Please select your event date.</p>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="guestCount">Estimated Guest Count</label>
+              <input type="number" id="guestCount" name="guestCount" placeholder="e.g. 45" min="10" max="140">
+            </div>
+            <div class="form-group">
+              <label for="prefTime">Preferred Time</label>
+              <select id="prefTime" name="prefTime">
+                <option value="" disabled selected>Select a time</option>
+                <option>Morning / Midday</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+                <option>Flexible</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Indoor / Outdoor Preference</label>
+            <div class="inline-group">
+              <label class="radio-opt"><input type="radio" name="venue_pref" value="Indoor"> Indoor</label>
+              <label class="radio-opt"><input type="radio" name="venue_pref" value="Outdoor"> Outdoor / Courtyard</label>
+              <label class="radio-opt"><input type="radio" name="venue_pref" value="No Preference" checked> No Preference</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Package Interest</label>
+            <div class="check-grid" id="pkgCheckboxes">
+              <label class="check-opt"><input type="checkbox" name="pkg_interest" value="The Social"> The Social</label>
+              <label class="check-opt"><input type="checkbox" name="pkg_interest" value="The Celebration"> The Celebration</label>
+              <label class="check-opt"><input type="checkbox" name="pkg_interest" value="The Full Experience"> The Full Experience</label>
+              <label class="check-opt"><input type="checkbox" name="pkg_interest" value="Not Sure Yet"> Not Sure Yet</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="evDetails">Tell Us About Your Event</label>
+            <textarea id="evDetails" name="evDetails" placeholder="Share any details about your vision, special requests, or questions..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="howHeard">How Did You Hear About Us?</label>
+            <select id="howHeard" name="howHeard">
+              <option value="" disabled selected>Select one</option>
+              <option>Google</option>
+              <option>Instagram</option>
+              <option>Facebook</option>
+              <option>Word of Mouth</option>
+              <option>Returning Guest</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit">Send My Inquiry</button>
+        </form>
+
+        <p class="form-after">We respond to all event inquiries within 24 hours. For immediate assistance,<br>call us at <a href="tel:7038580077">703.858.0077</a> or email <a href="mailto:info@mypartybar.com">info@mypartybar.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ═════════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">Parallel <em>Party Bar</em></div>
+          <p class="footer-tagline">Private Events &middot; Ashburn, Virginia</p>
+          <div class="social-row">
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <p>43135 Broadlands Center Plaza, Suite 119<br>Ashburn, VA 20148</p>
+          <p><a href="tel:7038580077">703.858.0077</a></p>
+          <p><a href="mailto:info@mypartybar.com">info@mypartybar.com</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Parallel Wine, LLC. All Rights Reserved.</p>
+        <a href="#">Also visit Parallel Wine &amp; Whiskey Bar &rarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ JAVASCRIPT ════════════════════════════════════════════ -->
+  <script>
+    /* ─── Scroll-triggered reveal ─────────────────────────── */
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      // Kick hero reveals immediately
+      document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+      els.forEach(el => {
+        if (!el.classList.contains('visible')) io.observe(el);
+      });
+    })();
+
+    /* ─── Navbar ──────────────────────────────────────────── */
+    const navEl = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      navEl.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ─── Mobile menu ─────────────────────────────────────── */
+    const mobileMenu = document.getElementById('mobileMenu');
+    const burgerBtn  = document.getElementById('burgerBtn');
+    const mobileClose = document.getElementById('mobileClose');
+
+    burgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      burgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    });
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
+      burgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    mobileClose.addEventListener('click', closeMobile);
+    mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) closeMobile(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobile(); });
+
+    /* ─── Package CTA scroll + pre-select ────────────────── */
+    function selectPackage(pkgName) {
+      document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => {
+        document.querySelectorAll('input[name="pkg_interest"]').forEach(cb => {
+          cb.checked = cb.value === pkgName;
+        });
+      }, 700);
+    }
+
+    /* ─── Form validation ─────────────────────────────────── */
+    const requiredFields = [
+      { id: 'fName',  errId: 'fName-err',  validate: v => v.trim().length > 0 },
+      { id: 'lName',  errId: 'lName-err',  validate: v => v.trim().length > 0 },
+      { id: 'email',  errId: 'email-err',  validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+      { id: 'evType', errId: 'evType-err', validate: v => v !== '' },
+      { id: 'evDate', errId: 'evDate-err', validate: v => v !== '' },
+    ];
+
+    function clearError(id) {
+      const el = document.getElementById(id);
+      if (el) { el.classList.remove('err'); }
+      const errEl = document.getElementById(id + '-err');
+      if (errEl) errEl.classList.remove('show');
+    }
+
+    requiredFields.forEach(f => {
+      const el = document.getElementById(f.id);
+      if (el) el.addEventListener('input', () => clearError(f.id));
+    });
+
+    document.getElementById('inquiryForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      let valid = true;
+
+      requiredFields.forEach(f => {
+        const el  = document.getElementById(f.id);
+        const err = document.getElementById(f.errId);
+        if (!f.validate(el.value)) {
+          el.classList.add('err');
+          err.classList.add('show');
+          valid = false;
+        } else {
+          el.classList.remove('err');
+          err.classList.remove('show');
+        }
+      });
+
+      if (!valid) {
+        // Scroll to first error
+        const firstErr = document.querySelector('.err');
+        if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // Show success
+      const firstName = document.getElementById('fName').value.trim();
+      document.getElementById('successHeading').textContent =
+        `Thank you, ${firstName}! We’ll be in touch within 24 hours.`;
+
+      document.getElementById('inquiryForm').style.display = 'none';
+      document.querySelector('.form-after').style.display = 'none';
+      const ss = document.getElementById('successState');
+      ss.classList.add('show');
+      ss.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+</body>
+</html>
