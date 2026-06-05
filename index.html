@@ -1330,7 +1330,7 @@
       if (el) el.addEventListener('input', () => clearError(f.id));
     });
 
-    document.getElementById(‘inquiryForm’).addEventListener(‘submit’, async function (e) {
+    document.getElementById('inquiryForm').addEventListener('submit', async function (e) {
       e.preventDefault();
       let valid = true;
 
@@ -1338,56 +1338,56 @@
         const el  = document.getElementById(f.id);
         const err = document.getElementById(f.errId);
         if (!f.validate(el.value)) {
-          el.classList.add(‘err’);
-          err.classList.add(‘show’);
+          el.classList.add('err');
+          err.classList.add('show');
           valid = false;
         } else {
-          el.classList.remove(‘err’);
-          err.classList.remove(‘show’);
+          el.classList.remove('err');
+          err.classList.remove('show');
         }
       });
 
       if (!valid) {
-        const firstErr = document.querySelector(‘.err’);
-        if (firstErr) firstErr.scrollIntoView({ behavior: ‘smooth’, block: ‘center’ });
+        const firstErr = document.querySelector('.err');
+        if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
 
-      const btn = this.querySelector(‘.btn-submit’);
+      const btn = this.querySelector('.btn-submit');
       btn.disabled = true;
-      btn.textContent = ‘Sending…’;
+      btn.textContent = 'Sending…';
 
       const formData = new FormData(this);
       // Collect checkbox values manually
-      const pkgVals = [...this.querySelectorAll(‘input[name="pkg_interest"]:checked’)].map(cb => cb.value);
-      formData.delete(‘pkg_interest’);
-      formData.append(‘pkg_interest’, pkgVals.join(‘, ‘) || ‘None selected’);
+      const pkgVals = [...this.querySelectorAll('input[name="pkg_interest"]:checked')].map(cb => cb.value);
+      formData.delete('pkg_interest');
+      formData.append('pkg_interest', pkgVals.join(', ') || 'None selected');
 
       try {
         const res = await fetch(this.action, {
-          method: ‘POST’,
+          method: 'POST',
           body: formData,
-          headers: { ‘Accept’: ‘application/json’ }
+          headers: { 'Accept': 'application/json' }
         });
 
         if (res.ok) {
-          const firstName = document.getElementById(‘fName’).value.trim();
-          document.getElementById(‘successHeading’).textContent =
-            `Thank you, ${firstName}! We’ll be in touch within 24 hours.`;
-          this.style.display = ‘none’;
-          document.querySelector(‘.form-after’).style.display = ‘none’;
-          const ss = document.getElementById(‘successState’);
-          ss.classList.add(‘show’);
-          ss.scrollIntoView({ behavior: ‘smooth’, block: ‘center’ });
+          const firstName = document.getElementById('fName').value.trim();
+          document.getElementById('successHeading').textContent =
+            `Thank you, ${firstName}! We'll be in touch within 24 hours.`;
+          this.style.display = 'none';
+          document.querySelector('.form-after').style.display = 'none';
+          const ss = document.getElementById('successState');
+          ss.classList.add('show');
+          ss.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
           btn.disabled = false;
-          btn.textContent = ‘Send My Inquiry’;
-          alert(‘Something went wrong. Please try again or call us at 703.858.0077.’);
+          btn.textContent = 'Send My Inquiry';
+          alert('Something went wrong. Please try again or call us at 703.858.0077.');
         }
       } catch {
         btn.disabled = false;
-        btn.textContent = ‘Send My Inquiry’;
-        alert(‘Network error. Please try again or call us at 703.858.0077.’);
+        btn.textContent = 'Send My Inquiry';
+        alert('Network error. Please try again or call us at 703.858.0077.');
       }
     });
   </script>
