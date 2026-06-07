@@ -472,7 +472,7 @@
 
     .pkg-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 24px;
       margin-bottom: 44px;
     }
@@ -860,10 +860,16 @@
     /* ══════════════════════════════════════════════════════════
        RESPONSIVE
     ══════════════════════════════════════════════════════════ */
+    @media (max-width: 1200px) {
+      .pkg-grid   { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 1000px) {
       .venue-grid { grid-template-columns: 1fr; gap: 52px; }
-      .pkg-grid   { grid-template-columns: 1fr; max-width: 540px; margin-left: auto; margin-right: auto; }
+      .pkg-grid   { grid-template-columns: repeat(2, 1fr); }
       .why-grid   { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .pkg-grid   { grid-template-columns: 1fr; max-width: 540px; margin-left: auto; margin-right: auto; }
     }
     @media (max-width: 820px) {
       section { padding: 80px 0; }
@@ -1017,8 +1023,25 @@
       <div class="gold-rule center reveal reveal-d2"></div>
       <div class="pkg-grid">
 
-        <!-- The Social -->
+        <!-- The Platter -->
         <div class="pkg-card reveal reveal-d1">
+          <h3 class="pkg-name">The Platter</h3>
+          <p class="pkg-type">Pickup &amp; Dropoff</p>
+          <ul class="pkg-features">
+            <li>Party platters to go — no event required</li>
+            <li>Artisan cheese boards</li>
+            <li>Bacon lollipops</li>
+            <li>Devilled eggs</li>
+            <li>Fully customizable to your tastes</li>
+            <li>Pickup or local dropoff available</li>
+            <li>Dropoff at an additional fee</li>
+          </ul>
+          <p class="pkg-perfect">Perfect for: home parties, office gatherings, game days, or any occasion that deserves great food</p>
+          <button class="btn-outline-gold" onclick="selectPackage('The Platter')">Inquire About This Package</button>
+        </div>
+
+        <!-- The Social -->
+        <div class="pkg-card reveal reveal-d2">
           <h3 class="pkg-name">The Social</h3>
           <p class="pkg-type">Beverage Focus</p>
           <ul class="pkg-features">
@@ -1034,7 +1057,7 @@
         </div>
 
         <!-- The Celebration (featured) -->
-        <div class="pkg-card featured reveal reveal-d2">
+        <div class="pkg-card featured reveal reveal-d3">
           <span class="pkg-badge">Most Popular</span>
           <h3 class="pkg-name">The Celebration</h3>
           <p class="pkg-type">The Full Package</p>
@@ -1052,7 +1075,7 @@
         </div>
 
         <!-- The Full Experience -->
-        <div class="pkg-card reveal reveal-d3">
+        <div class="pkg-card reveal reveal-d4">
           <h3 class="pkg-name">The Full Experience</h3>
           <p class="pkg-type">Premium</p>
           <ul class="pkg-features">
@@ -1193,6 +1216,7 @@
           <div class="form-group">
             <label>Package Interest</label>
             <div class="check-grid" id="pkgCheckboxes">
+              <label class="check-opt"><input type="checkbox" name="pkg_interest" value="The Platter"> The Platter (Pickup/Dropoff)</label>
               <label class="check-opt"><input type="checkbox" name="pkg_interest" value="The Social"> The Social</label>
               <label class="check-opt"><input type="checkbox" name="pkg_interest" value="The Celebration"> The Celebration</label>
               <label class="check-opt"><input type="checkbox" name="pkg_interest" value="The Full Experience"> The Full Experience</label>
